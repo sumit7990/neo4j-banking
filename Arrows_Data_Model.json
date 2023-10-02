@@ -1,0 +1,204 @@
+{
+  "style": {
+    "font-family": "Nunito Sans",
+    "background-color": "#F2F2F2",
+    "background-image": "",
+    "background-size": "100%",
+    "node-color": "#4C8EDA",
+    "border-width": 0,
+    "border-color": "#000000",
+    "radius": 75,
+    "node-padding": 5,
+    "node-margin": 2,
+    "outside-position": "auto",
+    "node-icon-image": "",
+    "node-background-image": "",
+    "icon-position": "inside",
+    "icon-size": 64,
+    "caption-position": "inside",
+    "caption-max-width": 200,
+    "caption-color": "#ffffff",
+    "caption-font-size": 20,
+    "caption-font-weight": "normal",
+    "label-position": "inside",
+    "label-display": "bare",
+    "label-color": "#ffffff",
+    "label-background-color": "#848484",
+    "label-border-color": "#848484",
+    "label-border-width": 3,
+    "label-font-size": 20,
+    "label-padding": 5,
+    "label-margin": 4,
+    "directionality": "directed",
+    "detail-position": "above",
+    "detail-orientation": "parallel",
+    "arrow-width": 3,
+    "arrow-color": "#848484",
+    "margin-start": 5,
+    "margin-end": 5,
+    "margin-peer": 20,
+    "attachment-start": "normal",
+    "attachment-end": "normal",
+    "relationship-icon-image": "",
+    "type-color": "#848484",
+    "type-background-color": "#F2F2F2",
+    "type-border-color": "#848484",
+    "type-border-width": 0,
+    "type-font-size": 21,
+    "type-padding": 5,
+    "property-position": "outside",
+    "property-alignment": "colon",
+    "property-color": "#848484",
+    "property-font-size": 20,
+    "property-font-weight": "normal"
+  },
+  "nodes": [
+    {
+      "id": "n0",
+      "position": {
+        "x": -279.2029918478079,
+        "y": -206
+      },
+      "caption": "",
+      "labels": [
+        "Customer"
+      ],
+      "properties": {
+        "CIF": "int",
+        "Age": "int",
+        "EmailAddress": "string",
+        "FirstName": "string",
+        "LastName": "string",
+        "PhoneNumber": "string",
+        "Gender": "string",
+        "Address": "string",
+        "Country": "string",
+        "JobTitle": "string"
+      },
+      "style": {}
+    },
+    {
+      "id": "n1",
+      "position": {
+        "x": -343.3480356647565,
+        "y": 317.07934388580077
+      },
+      "caption": "",
+      "style": {},
+      "labels": [
+        "Account"
+      ],
+      "properties": {
+        "AccountNumber": "int"
+      }
+    },
+    {
+      "id": "n2",
+      "position": {
+        "x": 378,
+        "y": 317.07934388580077
+      },
+      "caption": "",
+      "style": {},
+      "labels": [
+        "Transaction"
+      ],
+      "properties": {
+        "TransactionID": "int"
+      }
+    },
+    {
+      "id": "n3",
+      "position": {
+        "x": 378,
+        "y": -206
+      },
+      "caption": "",
+      "style": {},
+      "labels": [
+        "Card"
+      ],
+      "properties": {
+        "CardNumber": "string",
+        "CardIssuer": "string"
+      }
+    },
+    {
+      "id": "n4",
+      "position": {
+        "x": 1041.811073762654,
+        "y": 34.771272964200705
+      },
+      "caption": "",
+      "style": {},
+      "labels": [
+        "Merchant"
+      ],
+      "properties": {
+        "Merchant": "string"
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "id": "n0",
+      "type": "HAS_ACCOUNT",
+      "style": {},
+      "properties": {},
+      "fromId": "n0",
+      "toId": "n1"
+    },
+    {
+      "id": "n1",
+      "type": "SEND_TO",
+      "style": {},
+      "properties": {
+        "Amount": "float",
+        "TransferDatetime": "string"
+      },
+      "fromId": "n1",
+      "toId": "n2"
+    },
+    {
+      "id": "n2",
+      "type": "RECEIVED_IN",
+      "style": {},
+      "properties": {
+        "Amount": "float",
+        "TransferDatetime": "string"
+      },
+      "fromId": "n2",
+      "toId": "n1"
+    },
+    {
+      "id": "n3",
+      "type": "MADE_PURCHASE",
+      "style": {},
+      "properties": {
+        "Amount": "float",
+        "PurchaseDatetime": "string"
+      },
+      "fromId": "n2",
+      "toId": "n4"
+    },
+    {
+      "id": "n4",
+      "type": "USED_CARD",
+      "style": {},
+      "properties": {
+        "Amount": "float",
+        "PurchaseDatetime": "string"
+      },
+      "fromId": "n2",
+      "toId": "n3"
+    },
+    {
+      "id": "n5",
+      "type": "HAS_CARD",
+      "style": {},
+      "properties": {},
+      "fromId": "n0",
+      "toId": "n3"
+    }
+  ]
+}
